@@ -14,9 +14,27 @@ class Model
 
 		try {
 
-			$this->db = new PDO("mysql:host=localhost;dbname=dbecommerce", "root", "");
-		} catch (Exception $e) {
+			$this->db = new PDO("mysql:host=;dbname=dbpln", "root", "");
+		} catch (\Exception $e) {
 			die("error! " . $e->getMessage());
 		}
+	}
+
+	public function select($stmt)
+	{
+		//Menampilkan satu data
+		return $stmt->fetch();
+	}
+
+	public function selects($stmt)
+	{
+		//Menampilkan banyak data
+		$data = [];
+
+		while ($rows = $stmt->fetch()) {
+			$data[] = $rows;
+		}
+
+		return $data;
 	}
 }
